@@ -48,7 +48,11 @@ const postsInDB = ref(database, "oldagram");
 
 onValue(postsInDB, function (snapshot) {
   let postsArray = Object.values(snapshot.val());
-  console.log(postsArray);
+  // console.log(postsArray);
+
+  for (let i = 0; i < postsArray.length; i++) {
+    console.log(postsArray[i].name);
+  }
 });
 
 let container = document.getElementById("container");
