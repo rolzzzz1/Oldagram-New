@@ -45,7 +45,8 @@ for (let i = 0; i < posts.length; i++) {
   const avatarImg = document.createElement("img");
   avatarImg.src = posts[i].avatar;
   avatarImg.alt = "Avatar image";
-  avatarImg.id = "avatar";
+  avatarImg.id = "avatar_img";
+  avatarImg.class = "avatar";
   container.append(avatarImg);
 
   // console.log(posts[i]);
