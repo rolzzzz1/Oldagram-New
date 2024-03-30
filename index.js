@@ -83,4 +83,12 @@ for (let i = 0; i < posts.length; i++) {
   dmIcon.src = "./images/icon-dm.png";
   dmIcon.alt = "Dm icon";
   footerDiv.append(dmIcon);
+
+  let likesP = document.createElement("p");
+  likesP.textContent = posts[i].likes;
+  footerDiv.append(likesP);
+
+  let commentP = document.createElement("p");
+  commentP.textContent = posts[i].username + posts[i].comment;
+  footerDiv.append(commentP);
 }
