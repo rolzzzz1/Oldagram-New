@@ -137,7 +137,7 @@ onValue(postsInDB, function (snapshot) {
       const count = postsArray[i].likes + 1;
       const key = postsKeyArr[i];
 
-      for (let i = 0; i < postsArray; i++) {
+      for (let i = 0; i < postsArray.length; i++) {
         (postContainer + i).textContent = "";
       }
 
