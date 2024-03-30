@@ -139,8 +139,8 @@ onValue(postsInDB, function (snapshot) {
 
       for (let i = 0; i < postsArray.length; i++) {
         const id = postContainer + i;
-        console.log(typeof id);
-        // id.textContent = "";
+
+        id.textContent = "";
       }
 
       let updatedData = {
