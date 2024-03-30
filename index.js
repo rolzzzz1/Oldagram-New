@@ -53,14 +53,18 @@ for (let i = 0; i < posts.length; i++) {
   avatarImg.className = "avatar";
   userInfoDiv.append(avatarImg);
 
+  let userTextDiv = document.createElement("div");
+  userTextDiv.className = "user_text";
+  userInfoDiv.append(userTextDiv);
+
   let nameP = document.createElement("p");
   nameP.className = "bold_text";
   nameP.textContent = posts[i].name;
-  userInfoDiv.append(nameP);
+  userTextDiv.append(nameP);
 
   let locationP = document.createElement("p");
   locationP.textContent = posts[i].location;
-  userInfoDiv.append(locationP);
+  userTextDiv.append(locationP);
 
   // console.log(posts[i]);
   // avatarImg.src = posts[i].avatar;
