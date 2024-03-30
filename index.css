@@ -3,12 +3,15 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Source Sans 3", sans-serif;
-  background-color: #ededed;
 }
 
 .container {
   width: 380px;
-  margin: 5px auto;
+  margin: 0 auto;
+  background-color: #c6c6c6;
+}
+
+.post_container {
   background-color: #ffffff;
 }
 
@@ -40,6 +43,7 @@ header {
 .footer_div {
   padding: 10px 10px;
   font-size: 13px;
+  margin-bottom: 20px;
 }
 
 .user_text p {

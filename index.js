@@ -29,12 +29,15 @@ const posts = [
   },
 ];
 
-let container = document.getElementById("post_container");
+let container = document.getElementsByClassName("container");
 
 for (let i = 0; i < posts.length; i++) {
+  let postContainer = document.createElement("div");
+  postContainer.className = "post_container";
+
   let userInfoDiv = document.createElement("div");
   userInfoDiv.className = "user_info";
-  container.append(userInfoDiv);
+  postContainer.append(userInfoDiv);
 
   let avatarImg = document.createElement("img");
   avatarImg.src = posts[i].avatar;
@@ -60,11 +63,11 @@ for (let i = 0; i < posts.length; i++) {
   postImg.src = posts[i].post;
   postImg.className = "post_img";
   postImg.alt = "Post image";
-  container.append(postImg);
+  postContainer.append(postImg);
 
   let footerDiv = document.createElement("section");
   footerDiv.className = "footer_div";
-  container.append(footerDiv);
+  postContainer.append(footerDiv);
 
   let heartIcon = document.createElement("img");
   heartIcon.className = "icons";
@@ -97,4 +100,6 @@ for (let i = 0; i < posts.length; i++) {
 
   commentP.append(" " + posts[i].comment);
   footerDiv.append(commentP);
+
+  container.append(postContainer);
 }
