@@ -136,6 +136,7 @@ onValue(postsInDB, function (snapshot) {
       const count = postsArray[i].likes + 1;
       const key = postsKeyArr[i];
 
+      postContainer.textContent = "";
       let updatedData = {
         likes: count,
       };
