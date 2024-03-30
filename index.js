@@ -66,6 +66,12 @@ for (let i = 0; i < posts.length; i++) {
   locationP.textContent = posts[i].location;
   userTextDiv.append(locationP);
 
+  let postImg = document.createElement("img");
+  postImg.src = posts[i].post;
+  postImg.className = "post_img";
+  postImg.alt = "Post image";
+  container.append(postImg);
+
   // console.log(posts[i]);
   // avatarImg.src = posts[i].avatar;
   // avatarName.value = posts[i].name;
