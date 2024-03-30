@@ -94,6 +94,6 @@ for (let i = 0; i < posts.length; i++) {
   username.className = "bold_text";
   username.textContent = posts[i].username;
 
-  commentP.textContent = username + " " + posts[i].comment;
+  commentP.textContent = username.textContent + " " + posts[i].comment;
   footerDiv.append(commentP);
 }
