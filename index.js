@@ -49,11 +49,15 @@ const database = getDatabase(app);
 const postsInDB = ref(database, "oldagram");
 
 let container = document.getElementById("container");
+let mainPostContainer = document.getElementById("main_post_container");
+container.append(mainPostContainer);
 
 onValue(postsInDB, function (snapshot) {
   let postsArray = Object.values(snapshot.val());
   let postsKeyArr = Object.keys(snapshot.val());
   // console.log(postsArray);
+
+  mainPostContainer.innerHTML = "";
 
   for (let i = 0; i < postsArray.length; i++) {
     console.log(postsArray[i].name);
@@ -61,7 +65,7 @@ onValue(postsInDB, function (snapshot) {
     let postContainer = document.createElement("div");
     postContainer.className = "post_container";
     postContainer.id = "post_container" + i;
-    container.append(postContainer);
+    mainPostContainer.append(postContainer);
 
     let userInfoDiv = document.createElement("div");
     userInfoDiv.className = "user_info";
@@ -137,11 +141,11 @@ onValue(postsInDB, function (snapshot) {
       const count = postsArray[i].likes + 1;
       const key = postsKeyArr[i];
 
-      for (let i = 0; i < postsArray.length; i++) {
-        const id = postContainer + i;
+      // for (let i = 0; i < postsArray.length; i++) {
+      //   const id = postContainer + i;
 
-        id.textContent = "";
-      }
+      //   id.textContent = "";
+      // }
 
       let updatedData = {
         likes: count,
