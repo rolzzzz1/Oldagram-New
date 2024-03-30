@@ -85,10 +85,15 @@ for (let i = 0; i < posts.length; i++) {
   footerDiv.append(dmIcon);
 
   let likesP = document.createElement("p");
-  likesP.textContent = posts[i].likes;
+  likesP.textContent = posts[i].likes + " likes";
+  likesP.className = "bold_text";
   footerDiv.append(likesP);
 
   let commentP = document.createElement("p");
-  commentP.textContent = posts[i].username + posts[i].comment;
+  let username = document.createElement("span");
+  username.className = "bold_text";
+  username.textContent = posts[i].username;
+
+  commentP.textContent = username + " " + posts[i].comment;
   footerDiv.append(commentP);
 }
