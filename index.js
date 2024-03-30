@@ -60,6 +60,7 @@ onValue(postsInDB, function (snapshot) {
 
     let postContainer = document.createElement("div");
     postContainer.className = "post_container";
+    postContainer.id = "post_container" + i;
     container.append(postContainer);
 
     let userInfoDiv = document.createElement("div");
@@ -136,7 +137,10 @@ onValue(postsInDB, function (snapshot) {
       const count = postsArray[i].likes + 1;
       const key = postsKeyArr[i];
 
-      postContainer.textContent = "";
+      for (let i = 0; i < postsArray; i++) {
+        (postContainer + i).textContent = "";
+      }
+
       let updatedData = {
         likes: count,
       };
