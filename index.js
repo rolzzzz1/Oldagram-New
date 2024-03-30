@@ -141,12 +141,6 @@ onValue(postsInDB, function (snapshot) {
       const count = postsArray[i].likes + 1;
       const key = postsKeyArr[i];
 
-      // for (let i = 0; i < postsArray.length; i++) {
-      //   const id = postContainer + i;
-
-      //   id.textContent = "";
-      // }
-
       let updatedData = {
         likes: count,
       };
@@ -158,6 +152,15 @@ onValue(postsInDB, function (snapshot) {
     let heartIconDC = document.getElementById("heartIcon" + i);
     heartIconDC.addEventListener("dblclick", function () {
       console.log("Double clicked heart - " + heartIconDC.id);
+      const count = postsArray[i].likes + 1;
+      const key = postsKeyArr[i];
+
+      let updatedData = {
+        likes: count,
+      };
+
+      const idRef = ref(database, "oldagram/" + key);
+      update(idRef, updatedData);
     });
   }
 });
