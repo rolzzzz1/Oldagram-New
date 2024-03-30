@@ -29,7 +29,7 @@ const posts = [
   },
 ];
 
-let container = document.getElementById("container");
+let container = document.getElementById("post_container");
 
 for (let i = 0; i < posts.length; i++) {
   let userInfoDiv = document.createElement("div");
@@ -93,7 +93,8 @@ for (let i = 0; i < posts.length; i++) {
   let username = document.createElement("span");
   username.className = "bold_text";
   username.textContent = posts[i].username;
+  commentP.append(username);
 
-  commentP.textContent = username.textContent + " " + posts[i].comment;
+  commentP.append(" " + posts[i].comment);
   footerDiv.append(commentP);
 }

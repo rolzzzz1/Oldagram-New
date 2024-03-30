@@ -9,6 +9,7 @@ body {
 .container {
   width: 380px;
   margin: 5px auto;
+  background-color: #ffffff;
 }
 
 header {
@@ -17,6 +18,7 @@ header {
   justify-content: space-between;
   padding: 10px 10px;
   border-bottom: 1px solid #c6c6c6;
+  background-color: #ffffff;
 }
 
 .user_info {
