@@ -54,6 +54,10 @@ for (let i = 0; i < posts.length; i++) {
   nameP.textContent = posts[i].name;
   container.append(nameP);
 
+  let locationP = document.createElement("p");
+  locationP.textContent = posts[i].location;
+  container.append(locationP);
+
   // console.log(posts[i]);
   // avatarImg.src = posts[i].avatar;
   // avatarName.value = posts[i].name;
