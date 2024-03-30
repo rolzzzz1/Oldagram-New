@@ -29,6 +29,27 @@ const posts = [
   },
 ];
 
-let avatarImg = document.getElementById("avatar_img");
-console.log(avatarImg);
-avatarImg.src = "images/avatar-courbet.jpg";
+// let avatarImg = document.getElementById("avatar_img");
+// let avatarName = document.getElementById("name");
+// let location = document.getElementById("location");
+// let postImg = document.getElementById("post_img");
+// let likes = document.getElementById("likes");
+// let comment = document.getElementById("comment");
+
+let container = document.getElementById("container");
+
+// console.log(avatarImg);
+// avatarImg.src = "images/avatar-courbet.jpg";
+
+for (let i = 0; i < posts.length; i++) {
+  const avatarImg = document.createElement("img");
+  avatarImg.src = posts[i].avatar;
+  avatarImg.alt = "Avatar image";
+
+  container.append(avatarImg);
+
+  // console.log(posts[i]);
+  // avatarImg.src = posts[i].avatar;
+  // avatarName.value = posts[i].name;
+  // location.value = posts[i].location;
+}
