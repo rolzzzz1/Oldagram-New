@@ -34,6 +34,7 @@ import {
   getDatabase,
   ref,
   onValue,
+  push,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 const appSettings = {
@@ -50,6 +51,7 @@ let container = document.getElementById("container");
 
 onValue(postsInDB, function (snapshot) {
   let postsArray = Object.values(snapshot.val());
+  let postsKeyArr = Object.keys(snapshot.val());
   // console.log(postsArray);
 
   for (let i = 0; i < postsArray.length; i++) {
@@ -130,7 +132,15 @@ onValue(postsInDB, function (snapshot) {
     let postImgDC = document.getElementById("post_img" + i);
     postImgDC.addEventListener("dblclick", function () {
       console.log("Doubled clicked post" + postImgDC.id);
-      postsArray[i].likes += 1;
+      const count = postsArray[i].likes + 1;
+      const key = postsKeyArr[i];
+
+      let updatedData = {
+        likes: count,
+      };
+
+      const idRef = ref(database, "oldagram/" + key);
+      update(idRef, updatedData);
     });
 
     let heartIconDC = document.getElementById("heartIcon" + i);
