@@ -71,4 +71,16 @@ for (let i = 0; i < posts.length; i++) {
   heartIcon.src = "./images/icon-heart.png";
   heartIcon.alt = "Heart icon";
   footerDiv.append(heartIcon);
+
+  let commentIcon = document.createElement("img");
+  commentIcon.className = "icons";
+  commentIcon.src = "./images/icon-comment.png";
+  commentIcon.alt = "Comment icon";
+  footerDiv.append(commentIcon);
+
+  let dmIcon = document.createElement("img");
+  dmIcon.className = "icons";
+  dmIcon.src = "./images/icon-dm.png";
+  dmIcon.alt = "Dm icon";
+  footerDiv.append(dmIcon);
 }
