@@ -29,17 +29,7 @@ const posts = [
   },
 ];
 
-// let avatarImg = document.getElementById("avatar_img");
-// let avatarName = document.getElementById("name");
-// let location = document.getElementById("location");
-// let postImg = document.getElementById("post_img");
-// let likes = document.getElementById("likes");
-// let comment = document.getElementById("comment");
-
 let container = document.getElementById("container");
-
-// console.log(avatarImg);
-// avatarImg.src = "images/avatar-courbet.jpg";
 
 for (let i = 0; i < posts.length; i++) {
   let userInfoDiv = document.createElement("div");
@@ -72,8 +62,13 @@ for (let i = 0; i < posts.length; i++) {
   postImg.alt = "Post image";
   container.append(postImg);
 
-  // console.log(posts[i]);
-  // avatarImg.src = posts[i].avatar;
-  // avatarName.value = posts[i].name;
-  // location.value = posts[i].location;
+  let footerDiv = document.createElement("section");
+  footerDiv.className = "footer_div";
+  container.append(footerDiv);
+
+  let heartIcon = document.createElement("img");
+  heartIcon.className = "icons";
+  heartIcon.src = "./images/icon-heart.png";
+  heartIcon.alt = "Heart icon";
+  footerDiv.append(heartIcon);
 }
