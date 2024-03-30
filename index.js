@@ -29,11 +29,29 @@ const posts = [
   },
 ];
 
-let container = document.getElementsByClassName("container");
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+import {
+  getDatabase,
+  ref,
+  push,
+} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+const appSettings = {
+  databaseURL:
+    "https://realtime-database-e841a-default-rtdb.asia-southeast1.firebasedatabase.app/",
+};
+
+const app = initializeApp(appSettings);
+// initializeApp method will connect our project to our database on firebase
+const database = getDatabase(app);
+const postsInDB = ref(database, "oldagram");
+
+let container = document.getElementById("container");
 
 for (let i = 0; i < posts.length; i++) {
   let postContainer = document.createElement("div");
   postContainer.className = "post_container";
+  container.append(postContainer);
 
   let userInfoDiv = document.createElement("div");
   userInfoDiv.className = "user_info";
@@ -61,6 +79,7 @@ for (let i = 0; i < posts.length; i++) {
 
   let postImg = document.createElement("img");
   postImg.src = posts[i].post;
+  postImg.id = "post_img" + i;
   postImg.className = "post_img";
   postImg.alt = "Post image";
   postContainer.append(postImg);
@@ -70,6 +89,7 @@ for (let i = 0; i < posts.length; i++) {
   postContainer.append(footerDiv);
 
   let heartIcon = document.createElement("img");
+  heartIcon.id = "heartIcon" + i;
   heartIcon.className = "icons";
   heartIcon.src = "./images/icon-heart.png";
   heartIcon.alt = "Heart icon";
@@ -101,5 +121,14 @@ for (let i = 0; i < posts.length; i++) {
   commentP.append(" " + posts[i].comment);
   footerDiv.append(commentP);
 
-  container.append(postContainer);
+  let postImgDC = document.getElementById("post_img" + i);
+  postImgDC.addEventListener("dblclick", function () {
+    console.log("Doubled clicked post" + postImgDC.id);
+    posts[i].likes += 1;
+  });
+
+  let heartIconDC = document.getElementById("heartIcon" + i);
+  heartIconDC.addEventListener("dblclick", function () {
+    console.log("Double clicked heart - " + heartIconDC.id);
+  });
 }
