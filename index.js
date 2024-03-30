@@ -35,6 +35,7 @@ import {
   ref,
   onValue,
   push,
+  update,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 const appSettings = {
