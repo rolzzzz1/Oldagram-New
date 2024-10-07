@@ -81,7 +81,8 @@ onValue(postsInDB, function (snapshot) {
     </div>
   `;
 
-    const postImgDC = document.getElementById(`post_img${i}`);
+    const imgId = "post_img" + i;
+    const postImgDC = document.getElementById(imgId);
     postImgDC.addEventListener("dblclick", function () {
       console.log("Doubled clicked post" + postImgDC.id);
       const count = postsArray[i].likes + 1;
