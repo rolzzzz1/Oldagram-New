@@ -48,6 +48,7 @@ const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const postsInDB = ref(database, "oldagram");
 let postsArray = [];
+let postsKeyArr = [];
 
 let container = document.getElementById("container");
 let mainPostContainer = document.getElementById("main_post_container");
@@ -55,7 +56,7 @@ container.append(mainPostContainer);
 
 onValue(postsInDB, function (snapshot) {
   postsArray = Object.values(snapshot.val());
-  let postsKeyArr = Object.keys(snapshot.val());
+  postsKeyArr = Object.keys(snapshot.val());
   // console.log(postsArray);
 
   mainPostContainer.innerHTML = "";
