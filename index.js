@@ -88,6 +88,7 @@ document.addEventListener("dblclick", function (e) {
   console.log(e.target.id);
   console.log(typeof e.target.id);
   console.log(e.target.id.slice(-1));
+  console.log(e.target.id.pop());
 
   // heart event listener
   // console.log("Double clicked heart - " + heartIconDC.id);
