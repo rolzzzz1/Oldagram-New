@@ -47,13 +47,14 @@ const app = initializeApp(appSettings);
 // initializeApp method will connect our project to our database on firebase
 const database = getDatabase(app);
 const postsInDB = ref(database, "oldagram");
+const postsArray = [];
 
 let container = document.getElementById("container");
 let mainPostContainer = document.getElementById("main_post_container");
 container.append(mainPostContainer);
 
 onValue(postsInDB, function (snapshot) {
-  let postsArray = Object.values(snapshot.val());
+  postsArray = Object.values(snapshot.val());
   let postsKeyArr = Object.keys(snapshot.val());
   // console.log(postsArray);
 
