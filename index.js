@@ -87,6 +87,7 @@ onValue(postsInDB, function (snapshot) {
 document.addEventListener("dblclick", function (e) {
   console.log(e.target.id);
   console.log(typeof e.target.id);
+  console.log(e.target.id.slice(-1));
 
   // heart event listener
   // console.log("Double clicked heart - " + heartIconDC.id);
