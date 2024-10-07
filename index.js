@@ -84,7 +84,7 @@ onValue(postsInDB, function (snapshot) {
   mainPostContainer.innerHTML = postsHtml;
 });
 
-document.addEventListener("click", function (e) {
+document.addEventListener("dblclick", function (e) {
   console.log(e.target);
 });
 
