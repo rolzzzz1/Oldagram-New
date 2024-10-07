@@ -80,23 +80,12 @@ onValue(postsInDB, function (snapshot) {
       </section>
     </div>
   `;
-
-    const imgId = "post_img" + `"${i}"`;
-    const postImgDC = document.getElementById(imgId);
-    postImgDC.addEventListener("dblclick", function () {
-      console.log("Doubled clicked post" + postImgDC.id);
-      const count = postsArray[i].likes + 1;
-      const key = postsKeyArr[i];
-
-      let updatedData = {
-        likes: count,
-      };
-
-      const idRef = ref(database, "oldagram/" + key);
-      update(idRef, updatedData);
-    });
   }
   mainPostContainer.innerHTML = postsHtml;
+});
+
+document.addEventListener("click", function (e) {
+  console.log(e.target);
 });
 
 heartIconDC.addEventListener("dblclick", function () {
