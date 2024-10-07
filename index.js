@@ -58,196 +58,141 @@ onValue(postsInDB, function (snapshot) {
   // console.log(postsArray);
 
   mainPostContainer.innerHTML = "";
-
+  let postsHtml = "";
   for (let i = 0; i < postsArray.length; i++) {
-    console.log(postsArray[i].name);
-
-    let postContainer = document.createElement("div");
-    postContainer.className = "post_container";
-    postContainer.id = "post_container" + i;
-    mainPostContainer.append(postContainer);
-
-    let userInfoDiv = document.createElement("div");
-    userInfoDiv.className = "user_info";
-    postContainer.append(userInfoDiv);
-
-    let avatarImg = document.createElement("img");
-    avatarImg.src = postsArray[i].avatar;
-    avatarImg.alt = "Avatar image";
-    avatarImg.id = "avatar_img";
-    avatarImg.className = "avatar";
-    userInfoDiv.append(avatarImg);
-
-    let userTextDiv = document.createElement("div");
-    userTextDiv.className = "user_text";
-    userInfoDiv.append(userTextDiv);
-
-    let nameP = document.createElement("p");
-    nameP.className = "bold_text";
-    nameP.textContent = postsArray[i].name;
-    userTextDiv.append(nameP);
-
-    let locationP = document.createElement("p");
-    locationP.textContent = postsArray[i].location;
-    userTextDiv.append(locationP);
-
-    let postImg = document.createElement("img");
-    postImg.src = postsArray[i].post;
-    postImg.id = "post_img" + i;
-    postImg.className = "post_img";
-    postImg.alt = "Post image";
-    postContainer.append(postImg);
-
-    let footerDiv = document.createElement("section");
-    footerDiv.className = "footer_div";
-    postContainer.append(footerDiv);
-
-    let heartIcon = document.createElement("img");
-    heartIcon.id = "heartIcon" + i;
-    heartIcon.className = "icons";
-    heartIcon.src = "./images/icon-heart.png";
-    heartIcon.alt = "Heart icon";
-    footerDiv.append(heartIcon);
-
-    let commentIcon = document.createElement("img");
-    commentIcon.className = "icons";
-    commentIcon.src = "./images/icon-comment.png";
-    commentIcon.alt = "Comment icon";
-    footerDiv.append(commentIcon);
-
-    let dmIcon = document.createElement("img");
-    dmIcon.className = "icons";
-    dmIcon.src = "./images/icon-dm.png";
-    dmIcon.alt = "Dm icon";
-    footerDiv.append(dmIcon);
-
-    let likesP = document.createElement("p");
-    likesP.textContent = postsArray[i].likes + " likes";
-    likesP.className = "bold_text";
-    footerDiv.append(likesP);
-
-    let commentP = document.createElement("p");
-    let username = document.createElement("span");
-    username.className = "bold_text";
-    username.textContent = postsArray[i].username;
-    commentP.append(username);
-
-    commentP.append(" " + postsArray[i].comment);
-    footerDiv.append(commentP);
-
-    let postImgDC = document.getElementById("post_img" + i);
-    postImgDC.addEventListener("dblclick", function () {
-      console.log("Doubled clicked post" + postImgDC.id);
-      const count = postsArray[i].likes + 1;
-      const key = postsKeyArr[i];
-
-      let updatedData = {
-        likes: count,
-      };
-
-      const idRef = ref(database, "oldagram/" + key);
-      update(idRef, updatedData);
-    });
-
-    let heartIconDC = document.getElementById("heartIcon" + i);
-    heartIconDC.addEventListener("dblclick", function () {
-      console.log("Double clicked heart - " + heartIconDC.id);
-      const count = postsArray[i].likes + 1;
-      const key = postsKeyArr[i];
-
-      let updatedData = {
-        likes: count,
-      };
-
-      const idRef = ref(database, "oldagram/" + key);
-      update(idRef, updatedData);
-    });
+    const post = postsArray[i];
+    postsHtml += `
+    <div class="post_container" id="post_container${i}">
+      <div class="user_info">
+        <img src="${post.avatar}" alt="Avatar image" id="avatar_img" class="avatar">
+        <div class="user_text">
+          <p class="bold_text">${post.name}</p>
+          <p>${post.location}</p>
+        </div>
+      </div>
+      <img src="${post.post}" id="post_img${i}" class="post_img" alt="Post image">
+      <section class="footer_div">
+        <img id="heartIcon${i}" class="icons" src="./images/icon-heart.png" alt="Heart icon">
+        <img class="icons" src="./images/icon-comment.png" alt="Comment icon">
+        <img class="icons" src="./images/icon-dm.png" alt="Dm icon">
+        <p class="bold_text">${post.likes} likes</p>
+        <p><span class="bold_text">${post.username}</span> ${post.comment}</p>
+      </section>
+    </div>
+  `;
   }
+  mainPostContainer.innerHTML = postsHtml;
 });
 
-// let container = document.getElementById("container");
+// onValue(postsInDB, function (snapshot) {
+//   let postsArray = Object.values(snapshot.val());
+//   let postsKeyArr = Object.keys(snapshot.val());
+//   // console.log(postsArray);
 
-// for (let i = 0; i < posts.length; i++) {
-//   let postContainer = document.createElement("div");
-//   postContainer.className = "post_container";
-//   container.append(postContainer);
+//   mainPostContainer.innerHTML = "";
 
-//   let userInfoDiv = document.createElement("div");
-//   userInfoDiv.className = "user_info";
-//   postContainer.append(userInfoDiv);
+//   for (let i = 0; i < postsArray.length; i++) {
+//     console.log(postsArray[i].name);
 
-//   let avatarImg = document.createElement("img");
-//   avatarImg.src = posts[i].avatar;
-//   avatarImg.alt = "Avatar image";
-//   avatarImg.id = "avatar_img";
-//   avatarImg.className = "avatar";
-//   userInfoDiv.append(avatarImg);
+//     let postContainer = document.createElement("div");
+//     postContainer.className = "post_container";
+//     postContainer.id = "post_container" + i;
+//     mainPostContainer.append(postContainer);
 
-//   let userTextDiv = document.createElement("div");
-//   userTextDiv.className = "user_text";
-//   userInfoDiv.append(userTextDiv);
+//     let userInfoDiv = document.createElement("div");
+//     userInfoDiv.className = "user_info";
+//     postContainer.append(userInfoDiv);
 
-//   let nameP = document.createElement("p");
-//   nameP.className = "bold_text";
-//   nameP.textContent = posts[i].name;
-//   userTextDiv.append(nameP);
+//     let avatarImg = document.createElement("img");
+//     avatarImg.src = postsArray[i].avatar;
+//     avatarImg.alt = "Avatar image";
+//     avatarImg.id = "avatar_img";
+//     avatarImg.className = "avatar";
+//     userInfoDiv.append(avatarImg);
 
-//   let locationP = document.createElement("p");
-//   locationP.textContent = posts[i].location;
-//   userTextDiv.append(locationP);
+//     let userTextDiv = document.createElement("div");
+//     userTextDiv.className = "user_text";
+//     userInfoDiv.append(userTextDiv);
 
-//   let postImg = document.createElement("img");
-//   postImg.src = posts[i].post;
-//   postImg.id = "post_img" + i;
-//   postImg.className = "post_img";
-//   postImg.alt = "Post image";
-//   postContainer.append(postImg);
+//     let nameP = document.createElement("p");
+//     nameP.className = "bold_text";
+//     nameP.textContent = postsArray[i].name;
+//     userTextDiv.append(nameP);
 
-//   let footerDiv = document.createElement("section");
-//   footerDiv.className = "footer_div";
-//   postContainer.append(footerDiv);
+//     let locationP = document.createElement("p");
+//     locationP.textContent = postsArray[i].location;
+//     userTextDiv.append(locationP);
 
-//   let heartIcon = document.createElement("img");
-//   heartIcon.id = "heartIcon" + i;
-//   heartIcon.className = "icons";
-//   heartIcon.src = "./images/icon-heart.png";
-//   heartIcon.alt = "Heart icon";
-//   footerDiv.append(heartIcon);
+//     let postImg = document.createElement("img");
+//     postImg.src = postsArray[i].post;
+//     postImg.id = "post_img" + i;
+//     postImg.className = "post_img";
+//     postImg.alt = "Post image";
+//     postContainer.append(postImg);
 
-//   let commentIcon = document.createElement("img");
-//   commentIcon.className = "icons";
-//   commentIcon.src = "./images/icon-comment.png";
-//   commentIcon.alt = "Comment icon";
-//   footerDiv.append(commentIcon);
+//     let footerDiv = document.createElement("section");
+//     footerDiv.className = "footer_div";
+//     postContainer.append(footerDiv);
 
-//   let dmIcon = document.createElement("img");
-//   dmIcon.className = "icons";
-//   dmIcon.src = "./images/icon-dm.png";
-//   dmIcon.alt = "Dm icon";
-//   footerDiv.append(dmIcon);
+//     let heartIcon = document.createElement("img");
+//     heartIcon.id = "heartIcon" + i;
+//     heartIcon.className = "icons";
+//     heartIcon.src = "./images/icon-heart.png";
+//     heartIcon.alt = "Heart icon";
+//     footerDiv.append(heartIcon);
 
-//   let likesP = document.createElement("p");
-//   likesP.textContent = posts[i].likes + " likes";
-//   likesP.className = "bold_text";
-//   footerDiv.append(likesP);
+//     let commentIcon = document.createElement("img");
+//     commentIcon.className = "icons";
+//     commentIcon.src = "./images/icon-comment.png";
+//     commentIcon.alt = "Comment icon";
+//     footerDiv.append(commentIcon);
 
-//   let commentP = document.createElement("p");
-//   let username = document.createElement("span");
-//   username.className = "bold_text";
-//   username.textContent = posts[i].username;
-//   commentP.append(username);
+//     let dmIcon = document.createElement("img");
+//     dmIcon.className = "icons";
+//     dmIcon.src = "./images/icon-dm.png";
+//     dmIcon.alt = "Dm icon";
+//     footerDiv.append(dmIcon);
 
-//   commentP.append(" " + posts[i].comment);
-//   footerDiv.append(commentP);
+//     let likesP = document.createElement("p");
+//     likesP.textContent = postsArray[i].likes + " likes";
+//     likesP.className = "bold_text";
+//     footerDiv.append(likesP);
 
-//   let postImgDC = document.getElementById("post_img" + i);
-//   postImgDC.addEventListener("dblclick", function () {
-//     console.log("Doubled clicked post" + postImgDC.id);
-//     posts[i].likes += 1;
-//   });
+//     let commentP = document.createElement("p");
+//     let username = document.createElement("span");
+//     username.className = "bold_text";
+//     username.textContent = postsArray[i].username;
+//     commentP.append(username);
 
-//   let heartIconDC = document.getElementById("heartIcon" + i);
-//   heartIconDC.addEventListener("dblclick", function () {
-//     console.log("Double clicked heart - " + heartIconDC.id);
-//   });
-// }
+//     commentP.append(" " + postsArray[i].comment);
+//     footerDiv.append(commentP);
+
+//     let postImgDC = document.getElementById("post_img" + i);
+//     postImgDC.addEventListener("dblclick", function () {
+//       console.log("Doubled clicked post" + postImgDC.id);
+//       const count = postsArray[i].likes + 1;
+//       const key = postsKeyArr[i];
+
+//       let updatedData = {
+//         likes: count,
+//       };
+
+//       const idRef = ref(database, "oldagram/" + key);
+//       update(idRef, updatedData);
+//     });
+
+//     let heartIconDC = document.getElementById("heartIcon" + i);
+//     heartIconDC.addEventListener("dblclick", function () {
+//       console.log("Double clicked heart - " + heartIconDC.id);
+//       const count = postsArray[i].likes + 1;
+//       const key = postsKeyArr[i];
+
+//       let updatedData = {
+//         likes: count,
+//       };
+
+//       const idRef = ref(database, "oldagram/" + key);
+//       update(idRef, updatedData);
+//     });
+//   }
+// });
