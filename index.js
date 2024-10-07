@@ -84,6 +84,32 @@ onValue(postsInDB, function (snapshot) {
   mainPostContainer.innerHTML = postsHtml;
 });
 
+postImgDC.addEventListener("dblclick", function () {
+  console.log("Doubled clicked post" + postImgDC.id);
+  const count = postsArray[i].likes + 1;
+  const key = postsKeyArr[i];
+
+  let updatedData = {
+    likes: count,
+  };
+
+  const idRef = ref(database, "oldagram/" + key);
+  update(idRef, updatedData);
+});
+
+heartIconDC.addEventListener("dblclick", function () {
+  console.log("Double clicked heart - " + heartIconDC.id);
+  const count = postsArray[i].likes + 1;
+  const key = postsKeyArr[i];
+
+  let updatedData = {
+    likes: count,
+  };
+
+  const idRef = ref(database, "oldagram/" + key);
+  update(idRef, updatedData);
+});
+
 // onValue(postsInDB, function (snapshot) {
 //   let postsArray = Object.values(snapshot.val());
 //   let postsKeyArr = Object.keys(snapshot.val());
