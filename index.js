@@ -85,15 +85,16 @@ onValue(postsInDB, function (snapshot) {
 });
 
 document.addEventListener("dblclick", function (e) {
-  const targetId = targetId.slice(-1);
+  const targetId = e.target.id;
+  const id = targetId.slice(-1);
 
   // console.log(targetId.slice(-1));
   // console.log(targetId.slice(0, -1));
 
   const target = targetId.slice(0, -1);
   if (target === "heartIcon") {
-    const count = postsArray[targetId].likes + 1;
-    const key = postsKeyArr[targetId];
+    const count = postsArray[id].likes + 1;
+    const key = postsKeyArr[id];
 
     let updatedData = {
       likes: count,
@@ -102,8 +103,8 @@ document.addEventListener("dblclick", function (e) {
     const idRef = ref(database, "oldagram/" + key);
     update(idRef, updatedData);
   } else if (target === "post_img") {
-    const count = postsArray[targetId].likes + 1;
-    const key = postsKeyArr[targetId];
+    const count = postsArray[id].likes + 1;
+    const key = postsKeyArr[id];
     let updatedData = {
       likes: count,
     };
