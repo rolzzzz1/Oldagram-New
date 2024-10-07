@@ -85,20 +85,32 @@ onValue(postsInDB, function (snapshot) {
 });
 
 document.addEventListener("dblclick", function (e) {
-  console.log(e.target);
-});
+  console.log(e.target.id);
+  console.log(typeof e.target.id);
 
-heartIconDC.addEventListener("dblclick", function () {
-  console.log("Double clicked heart - " + heartIconDC.id);
-  const count = postsArray[i].likes + 1;
-  const key = postsKeyArr[i];
+  // heart event listener
+  // console.log("Double clicked heart - " + heartIconDC.id);
+  // const count = postsArray[i].likes + 1;
+  // const key = postsKeyArr[i];
 
-  let updatedData = {
-    likes: count,
-  };
+  // let updatedData = {
+  //   likes: count,
+  // };
 
-  const idRef = ref(database, "oldagram/" + key);
-  update(idRef, updatedData);
+  // const idRef = ref(database, "oldagram/" + key);
+  // update(idRef, updatedData);
+
+  // post image event listener
+  // console.log("Doubled clicked post" + postImgDC.id);
+  // const count = postsArray[i].likes + 1;
+  // const key = postsKeyArr[i];
+
+  // let updatedData = {
+  //   likes: count,
+  // };
+
+  // const idRef = ref(database, "oldagram/" + key);
+  // update(idRef, updatedData);
 });
 
 // onValue(postsInDB, function (snapshot) {
