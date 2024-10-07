@@ -85,34 +85,31 @@ onValue(postsInDB, function (snapshot) {
 });
 
 document.addEventListener("dblclick", function (e) {
-  const targetId = e.target.id;
+  const targetId = targetId.slice(-1);
 
-  console.log(targetId.slice(-1));
-  console.log(targetId.slice(0, -1));
+  // console.log(targetId.slice(-1));
+  // console.log(targetId.slice(0, -1));
 
-  // heart event listener
-  // console.log("Double clicked heart - " + heartIconDC.id);
-  // const count = postsArray[i].likes + 1;
-  // const key = postsKeyArr[i];
+  const target = targetId.slice(0, -1);
+  if (target === "heartIcon") {
+    const count = postsArray[targetId].likes + 1;
+    const key = postsKeyArr[targetId];
 
-  // let updatedData = {
-  //   likes: count,
-  // };
+    let updatedData = {
+      likes: count,
+    };
 
-  // const idRef = ref(database, "oldagram/" + key);
-  // update(idRef, updatedData);
-
-  // post image event listener
-  // console.log("Doubled clicked post" + postImgDC.id);
-  // const count = postsArray[i].likes + 1;
-  // const key = postsKeyArr[i];
-
-  // let updatedData = {
-  //   likes: count,
-  // };
-
-  // const idRef = ref(database, "oldagram/" + key);
-  // update(idRef, updatedData);
+    const idRef = ref(database, "oldagram/" + key);
+    update(idRef, updatedData);
+  } else if (target === "post_img") {
+    const count = postsArray[targetId].likes + 1;
+    const key = postsKeyArr[targetId];
+    let updatedData = {
+      likes: count,
+    };
+    const idRef = ref(database, "oldagram/" + key);
+    update(idRef, updatedData);
+  }
 });
 
 // onValue(postsInDB, function (snapshot) {
